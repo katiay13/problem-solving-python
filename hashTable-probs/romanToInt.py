@@ -9,15 +9,15 @@ def romanToInt(s):
     numerals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 
         'C': 100, 'D': 500, 'M': 1000}
     total = 0
-    prev = None
-    for i, symbol in enumerate(s):
+    prev = 0
+    for symbol in s:
+        val = numerals[symbol]
         # If previous symbol was greater, subtract
-        if prev and numerals[symbol] > numerals[prev]:
-            total -= numerals[prev]
-            total += numerals[symbol] - numerals[prev]
+        if val > prev:
+            total += val - 2 * prev
         else:
-            total += numerals[symbol]
-        prev = symbol
+            total += val
+        prev = val
     return total
         
 # Testing
